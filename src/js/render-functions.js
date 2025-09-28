@@ -2,10 +2,8 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './refs.js';
 
-let lightbox = null;
+const lightbox = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250});
 
-// повинна приймати масив images, створювати HTML-розмітку для галереї, додавати її в контейнер галереї та викликати
-// метод екземпляра SimpleLightbox refresh(). Нічого не повертає.
 export function createGallery(images) {
   const markup =
     images
@@ -38,25 +36,18 @@ export function createGallery(images) {
       .join('');
 
   refs.gallery.innerHTML = markup;
-
-  if (!lightbox) {
-    lightbox = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250});
-  } else {
-    lightbox.refresh();
-  }
+  lightbox.refresh();
 }
 
-//Ця функція нічого не приймає та повинна очищати вміст контейнера галереї.
-// Нічого не повертає.
 export function clearGallery() {
   refs.gallery.innerHTML = '';
   console.log(`CALL CLEAR GALLERY ${new Date}`);
 }
 
-//Ця функція нічого не приймає, повинна додавати клас для відображення лоадера.
-// Нічого не повертає.
-export function showLoader() {}
+export function showLoader() {
+  refs.loader.classList.add('is-visible');
+}
 
-//Ця функція нічого не приймає, повинна прибирати клас для відображення лоадера.
-// Нічого не повертає.
-export function hideLoader() {}
+export function hideLoader() {
+  refs.loader.classList.remove('is-visible');
+}
