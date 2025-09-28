@@ -7,16 +7,16 @@
 // їх у відповідний момент.
 
 import { getImagesByQuery } from './js/pixabay-api.js';
+import { clearGallery, createGallery } from './js/render-functions.js';
+import { refs } from './js/refs.js';
 
-const refs = {
-  form: document.querySelector('.form'),
-}
-
-refs.form.addEventListener('submit', (e) => {
+refs.form.addEventListener('submit', e => {
   e.preventDefault();
   const inputValue = e.target.elements['search-text'].value.trim();
 
-  if(!inputValue) return;
+  if (!inputValue) return;
+  clearGallery();
 
-  getImagesByQuery(inputValue);
+  getImagesByQuery(inputValue)
+    .then(images => createGallery(images));
 });

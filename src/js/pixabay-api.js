@@ -5,9 +5,10 @@ import { showError } from './iziToastHelper.js';
 // здійснювати HTTP-запит і повертати значення властивості data з отриманої відповіді.
 const key = '52494269-f940d25beafa0bafe61525357';
 const url = 'https://pixabay.com/api/';
+const imagesPerPage = 9;
 
 export function getImagesByQuery(query) {
-  axios.get(url, getParams(query))
+  return axios.get(url, getParams(query))
     .then(response => {
       const images = response.data.hits;
 
@@ -17,11 +18,11 @@ export function getImagesByQuery(query) {
         );
       }
 
-      console.log(images);
       return images;
     })
     .catch(error => {
       showError(error.message);
+      throw error;
     });
 }
 
@@ -33,6 +34,7 @@ function getParams(query) {
       image_type: 'image/png',
       orientation: 'horizontal',
       safesearch: true,
+      per_page: imagesPerPage,
     },
   };
 }

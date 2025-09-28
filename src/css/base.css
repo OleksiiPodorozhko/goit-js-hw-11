@@ -4,6 +4,7 @@ body {
 
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 36px;
@@ -12,6 +13,7 @@ body {
 .form {
   display: flex;
   gap: 8px;
+  margin: 0 auto 32px;
 }
 
 .form input[name="search-text"] {
