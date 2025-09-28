@@ -28,7 +28,7 @@ function getParams(query) {
     params: {
       key: key,
       q: query,
-      image_type: 'image/png',
+      image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
       per_page: imagesPerPage,
