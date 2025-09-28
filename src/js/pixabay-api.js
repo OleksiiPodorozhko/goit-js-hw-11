@@ -11,16 +11,15 @@ export function getImagesByQuery(query) {
       const images = response.data.hits;
 
       if (!images || !images.length) {
-        throw new Error(
-          'Sorry, there are no images matching your search query. Please try again!'
-        );
+        showError('Sorry, there are no images matching your search query. Please try again!');
+        return [];
       }
 
       return images;
     })
     .catch(error => {
       showError(error.message);
-      throw error;
+      return [];
     });
 }
 

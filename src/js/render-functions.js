@@ -41,7 +41,6 @@ export function createGallery(images) {
 
 export function clearGallery() {
   refs.gallery.innerHTML = '';
-  console.log(`CALL CLEAR GALLERY ${new Date}`);
 }
 
 export function showLoader() {
